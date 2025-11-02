@@ -11,7 +11,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MapPin, Star, Navigation } from 'lucide-react-native';
 import { professionals } from '@/mocks/professionals';
-import { LOGO_URL } from '@/constants/logo';
+import { LOGO_IMAGE } from '@/constants/logo';
 
 const { width } = Dimensions.get('window');
 
@@ -25,7 +25,7 @@ export default function MapScreen() {
     <View style={styles.container}>
       <View style={[styles.header, { paddingTop: insets.top + 16 }]}>
         <View style={styles.logoContainer}>
-          <Image source={{ uri: LOGO_URL }} style={styles.logo} resizeMode="contain" />
+          <Image source={LOGO_IMAGE} style={styles.logo} resizeMode="contain" />
         </View>
       </View>
       <View style={styles.headerContent}>

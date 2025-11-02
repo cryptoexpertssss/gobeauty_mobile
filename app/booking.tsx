@@ -15,7 +15,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useAppointments } from '@/contexts/AppointmentsContext';
 import { professionals } from '@/mocks/professionals';
 import { Calendar, Clock, AlignLeft } from 'lucide-react-native';
-import { LOGO_URL } from '@/constants/logo';
+import { LOGO_IMAGE } from '@/constants/logo';
 
 export default function BookingScreen() {
   const params = useLocalSearchParams();
@@ -112,7 +112,7 @@ export default function BookingScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
       <View style={styles.logoContainer}>
-        <Image source={{ uri: LOGO_URL }} style={styles.logo} resizeMode="contain" />
+        <Image source={LOGO_IMAGE} style={styles.logo} resizeMode="contain" />
       </View>
       <View style={styles.professionalSection}>
         <Image source={{ uri: professional.image }} style={styles.professionalImage} />

@@ -25,7 +25,7 @@ import {
 import { useAuth } from '@/contexts/AuthContext';
 import { useAppointments } from '@/contexts/AppointmentsContext';
 import { useRouter } from 'expo-router';
-import { LOGO_URL } from '@/constants/logo';
+import { LOGO_IMAGE } from '@/constants/logo';
 
 export default function ProfileScreen() {
   const insets = useSafeAreaInsets();
@@ -118,7 +118,7 @@ export default function ProfileScreen() {
         contentContainerStyle={[styles.scrollContent, { paddingTop: insets.top }]}
       >
         <View style={styles.logoContainer}>
-          <Image source={{ uri: LOGO_URL }} style={styles.logo} resizeMode="contain" />
+          <Image source={LOGO_IMAGE} style={styles.logo} resizeMode="contain" />
         </View>
         <View style={styles.header}>
           <View style={styles.profileSection}>

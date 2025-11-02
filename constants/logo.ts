@@ -1,1 +1,2 @@
-export const LOGO_URL = 'https://rork.app/pa/9h5q69ha1onk2dcmlcozy/logo';
+// Using local asset - no external URLs
+export const LOGO_IMAGE = require('../assets/images/logo.png');

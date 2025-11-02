@@ -10,7 +10,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Heart, Clock, TrendingUp, ChevronRight } from 'lucide-react-native';
 import { treatments, categories } from '@/mocks/treatments';
-import { LOGO_URL } from '@/constants/logo';
+import { LOGO_IMAGE } from '@/constants/logo';
 
 export default function TreatmentsScreen() {
   const insets = useSafeAreaInsets();
@@ -35,7 +35,7 @@ export default function TreatmentsScreen() {
         contentContainerStyle={[styles.scrollContent, { paddingTop: insets.top }]}
       >
         <View style={styles.logoContainer}>
-          <Image source={{ uri: LOGO_URL }} style={styles.logo} resizeMode="contain" />
+          <Image source={LOGO_IMAGE} style={styles.logo} resizeMode="contain" />
         </View>
         <View style={styles.header}>
           <Text style={styles.title}>Beauty Treatments</Text>

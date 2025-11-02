@@ -14,8 +14,8 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAuth, UserRole } from '@/contexts/AuthContext';
 import { useRouter } from 'expo-router';
-import { Lock, Mail, AlertCircle } from 'lucide-react-native';
-import { LOGO_URL } from '@/constants/logo';
+import { Lock, Mail, AlertCircle, Home } from 'lucide-react-native';
+import { LOGO_IMAGE } from '@/constants/logo';
 import { validateEmail, getEmailErrorMessage } from '@/utils/validation';
 
 export default function LoginScreen() {
@@ -77,9 +77,16 @@ export default function LoginScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <View style={[styles.content, { paddingTop: insets.top + 40 }]}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => router.push('/(tabs)')}
+        >
+          <Home color="#FF6B9D" size={24} />
+        </TouchableOpacity>
+
         <View style={styles.header}>
           <View style={styles.logoImageContainer}>
-            <Image source={{ uri: LOGO_URL }} style={styles.logoImage} resizeMode="contain" />
+            <Image source={LOGO_IMAGE} style={styles.logoImage} resizeMode="contain" />
           </View>
           <Text style={styles.title}>Welcome to Go Beauty</Text>
           <Text style={styles.subtitle}>
@@ -333,5 +340,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 18,
     marginTop: 8,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    padding: 12,
+    zIndex: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
 });

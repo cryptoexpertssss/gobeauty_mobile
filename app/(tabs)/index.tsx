@@ -13,7 +13,7 @@ import { Search, Star, MapPin, ChevronRight, Calendar } from 'lucide-react-nativ
 import { professionals } from '@/mocks/professionals';
 import { useRouter } from 'expo-router';
 import { useAuth } from '@/contexts/AuthContext';
-import { LOGO_URL } from '@/constants/logo';
+import { LOGO_IMAGE } from '@/constants/logo';
 
 // Category to specialty keyword mapping
 const CATEGORY_KEYWORDS: Record<string, string[]> = {
@@ -60,7 +60,7 @@ export default function ExploreScreen() {
         contentContainerStyle={[styles.scrollContent, { paddingTop: insets.top }]}
       >
         <View style={styles.logoContainer}>
-          <Image source={{ uri: LOGO_URL }} style={styles.logo} resizeMode="contain" />
+          <Image source={LOGO_IMAGE} style={styles.logo} resizeMode="contain" />
         </View>
         <View style={styles.header}>
           <Text style={styles.greeting}>Discover</Text>

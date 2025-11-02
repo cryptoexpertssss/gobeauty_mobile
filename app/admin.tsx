@@ -13,7 +13,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useAppointments, AppointmentStatus } from '@/contexts/AppointmentsContext';
 import { useRouter } from 'expo-router';
 import { Calendar, Clock, User, CheckCircle, XCircle, LogOut } from 'lucide-react-native';
-import { LOGO_URL } from '@/constants/logo';
+import { LOGO_IMAGE } from '@/constants/logo';
 
 export default function AdminScreen() {
   const insets = useSafeAreaInsets();
@@ -72,7 +72,7 @@ export default function AdminScreen() {
         contentContainerStyle={[styles.scrollContent, { paddingTop: insets.top }]}
       >
         <View style={styles.logoContainer}>
-          <Image source={{ uri: LOGO_URL }} style={styles.logo} resizeMode="contain" />
+          <Image source={LOGO_IMAGE} style={styles.logo} resizeMode="contain" />
         </View>
         <View style={styles.header}>
           <View>
