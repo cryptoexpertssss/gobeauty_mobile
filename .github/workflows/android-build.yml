@@ -37,7 +37,7 @@ jobs:
       - name: 📥 Install dependencies
         run: bun install
 
-      - name: � Set Version Number
+      - name: 🔢 Set Version Number
         id: version
         run: |
           # Get version from app.json
@@ -51,7 +51,7 @@ jobs:
 
           echo "📱 Building GoBeauty v${VERSION_NAME}"
 
-      - name: �🚀 Setup Expo
+      - name: 🚀 Setup Expo
         uses: expo/expo-github-action@v8
         with:
           expo-version: latest
@@ -59,6 +59,9 @@ jobs:
 
       - name: 🔨 Prebuild Android native code
         run: npx expo prebuild --platform android --clean
+
+      - name: 🔑 Make gradlew executable
+        run: chmod +x android/gradlew
 
       - name: 🏗️ Build Android APK
         working-directory: android
@@ -76,10 +79,10 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "📱 **App:** GoBeauty v${{ steps.version.outputs.version_name }}" >> $GITHUB_STEP_SUMMARY
           echo "🤖 **Platform:** Android" >> $GITHUB_STEP_SUMMARY
-          echo "� **Version:** ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "🔢 **Version:** ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
           echo "🏗️ **Build Number:** ${{ steps.version.outputs.build_number }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "📦 **APK Location:** \`android/app/build/outputs/apk/release/app-release.apk\`" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "� **Download:** Go to the 'Artifacts' section above to download **GoBeauty-v${{ steps.version.outputs.version_name }}-android.zip**" >> $GITHUB_STEP_SUMMARY
+          echo "📥 **Download:** Go to the 'Artifacts' section above to download **GoBeauty-v${{ steps.version.outputs.version_name }}-android.zip**" >> $GITHUB_STEP_SUMMARY
 
