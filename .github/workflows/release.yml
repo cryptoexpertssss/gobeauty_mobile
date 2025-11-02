@@ -1,0 +1,300 @@
+name: Create Release with APK and IPA
+
+on:
+  workflow_dispatch:  # Manual trigger from Actions tab
+    inputs:
+      create_release:
+        description: 'Create GitHub Release?'
+        required: true
+        type: boolean
+        default: true
+
+jobs:
+  build-android:
+    name: 🤖 Build Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🔧 Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: 📥 Install dependencies
+        run: bun install
+
+      - name: 🔢 Set Version Number
+        id: version
+        run: |
+          VERSION=$(node -p "require('./app.json').expo.version")
+          BUILD_NUMBER=${{ github.run_number }}
+          VERSION_NAME="${VERSION}.${BUILD_NUMBER}"
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+
+          echo "📱 Building GoBeauty v${VERSION_NAME}"
+
+      - name: 🚀 Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 🔨 Prebuild Android native code
+        run: npx expo prebuild --platform android --clean
+
+      - name: 🏗️ Build Android APK
+        working-directory: android
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: 🏷️ Rename APK
+        run: |
+          mkdir -p release
+          cp android/app/build/outputs/apk/release/app-release.apk release/GoBeauty-v${{ steps.version.outputs.version_name }}.apk
+
+      - name: 📦 Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: release/GoBeauty-v${{ steps.version.outputs.version_name }}.apk
+
+  build-ios:
+    name: 🍎 Build iOS
+    runs-on: macos-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 🔧 Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: 📥 Install dependencies
+        run: bun install
+
+      - name: 🔢 Set Version Number
+        id: version
+        run: |
+          VERSION=$(node -p "require('./app.json').expo.version")
+          BUILD_NUMBER=${{ github.run_number }}
+          VERSION_NAME="${VERSION}.${BUILD_NUMBER}"
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+
+          echo "📱 Building GoBeauty v${VERSION_NAME}"
+
+      - name: 🚀 Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 🔨 Prebuild iOS native code
+        run: npx expo prebuild --platform ios --clean
+
+      - name: 📦 Install CocoaPods dependencies
+        working-directory: ios
+        run: pod install
+
+      - name: 🔐 Import Code Signing Certificate
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.APPLE_CERTIFICATE_BASE64 }}
+          CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          echo -n "$CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          security import $CERTIFICATE_PATH -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          rm $CERTIFICATE_PATH
+
+      - name: 📱 Install Provisioning Profile
+        env:
+          PROVISIONING_PROFILE_BASE64: ${{ secrets.APPLE_PROVISIONING_PROFILE_BASE64 }}
+        run: |
+          PROFILE_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+
+          echo -n "$PROVISIONING_PROFILE_BASE64" | base64 --decode -o $PROFILE_PATH
+
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PROFILE_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
+
+          rm $PROFILE_PATH
+
+      - name: 🏗️ Build and Archive iOS App
+        working-directory: ios
+        run: |
+          WORKSPACE=$(find . -name "*.xcworkspace" -maxdepth 1 | head -n 1)
+
+          xcodebuild \
+            -workspace "$WORKSPACE" \
+            -scheme "IaraBeauty Clone" \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath $RUNNER_TEMP/IaraBeauty.xcarchive \
+            -allowProvisioningUpdates \
+            archive
+
+      - name: 📦 Export IPA
+        run: |
+          cat > $RUNNER_TEMP/ExportOptions.plist <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>ad-hoc</string>
+            <key>teamID</key>
+            <string>${{ secrets.APPLE_TEAM_ID }}</string>
+            <key>uploadBitcode</key>
+            <false/>
+            <key>compileBitcode</key>
+            <false/>
+            <key>uploadSymbols</key>
+            <true/>
+            <key>signingStyle</key>
+            <string>manual</string>
+          </dict>
+          </plist>
+          EOF
+
+          xcodebuild \
+            -exportArchive \
+            -archivePath $RUNNER_TEMP/IaraBeauty.xcarchive \
+            -exportOptionsPlist $RUNNER_TEMP/ExportOptions.plist \
+            -exportPath $RUNNER_TEMP/export
+
+      - name: 🏷️ Rename IPA
+        id: rename
+        run: |
+          mkdir -p release
+          IPA_PATH=$(find $RUNNER_TEMP/export -name "*.ipa" | head -n 1)
+          cp "$IPA_PATH" release/GoBeauty-v${{ steps.version.outputs.version_name }}.ipa
+
+      - name: 📦 Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-ipa
+          path: release/GoBeauty-v${{ steps.version.outputs.version_name }}.ipa
+
+      - name: 🧹 Cleanup Keychain
+        if: always()
+        run: |
+          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db || true
+
+  create-release:
+    name: 🚀 Create GitHub Release
+    needs: [build-android, build-ios]
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.create_release == 'true' }}
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔢 Set Version
+        id: version
+        run: |
+          VERSION=$(node -p "require('./app.json').expo.version")
+          BUILD_NUMBER=${{ github.run_number }}
+          VERSION_NAME="${VERSION}.${BUILD_NUMBER}"
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+
+      - name: 📦 Download Android APK
+        uses: actions/download-artifact@v4
+        with:
+          name: android-apk
+          path: ./release
+
+      - name: 📦 Download iOS IPA
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-ipa
+          path: ./release
+
+      - name: 🚀 Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.version.outputs.version_name }}
+          name: GoBeauty v${{ steps.version.outputs.version_name }}
+          body: |
+            ## 📱 GoBeauty v${{ steps.version.outputs.version_name }}
+
+            ### 📥 Direct Downloads (No ZIP!)
+            Click the files below to download directly:
+            - 🤖 **Android:** `GoBeauty-v${{ steps.version.outputs.version_name }}.apk`
+            - 🍎 **iOS:** `GoBeauty-v${{ steps.version.outputs.version_name }}.ipa`
+
+            ### 📱 Installation
+
+            **Android:**
+            1. Download the `.apk` file above
+            2. Enable "Install from Unknown Sources" in Settings
+            3. Open the APK file to install
+
+            **iOS:**
+            1. Download the `.ipa` file above
+            2. Install using Xcode, Apple Configurator, or Diawi
+            3. Trust the developer certificate: Settings → General → VPN & Device Management
+
+            ---
+
+            **Build Information:**
+            - Version: ${{ steps.version.outputs.version }}
+            - Build Number: ${{ github.run_number }}
+            - Commit: ${{ github.sha }}
+          files: |
+            release/*.apk
+            release/*.ipa
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ✅ Release Summary
+        run: |
+          echo "### 🎉 Release Created Successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📱 **GoBeauty v${{ steps.version.outputs.version_name }}**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 **Release URL:** https://github.com/${{ github.repository }}/releases/tag/v${{ steps.version.outputs.version_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📥 Direct Downloads (APK & IPA - No ZIP!):" >> $GITHUB_STEP_SUMMARY
+          echo "- 🤖 [GoBeauty-v${{ steps.version.outputs.version_name }}.apk](https://github.com/${{ github.repository }}/releases/download/v${{ steps.version.outputs.version_name }}/GoBeauty-v${{ steps.version.outputs.version_name }}.apk)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🍎 [GoBeauty-v${{ steps.version.outputs.version_name }}.ipa](https://github.com/${{ github.repository }}/releases/download/v${{ steps.version.outputs.version_name }}/GoBeauty-v${{ steps.version.outputs.version_name }}.ipa)" >> $GITHUB_STEP_SUMMARY
+
