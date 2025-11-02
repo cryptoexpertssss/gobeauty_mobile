@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "IaraBeauty Clone",
-    "slug": "iarabeauty-clone",
+    "name": "GoBeauty",
+    "slug": "gobeauty",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -14,14 +14,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "app.rork.iarabeauty-clone"
+      "bundleIdentifier": "app.gobeauty"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "app.rork.iarabeauty_clone",
+      "package": "app.gobeauty",
       "newArchEnabled": false
     },
     "web": {

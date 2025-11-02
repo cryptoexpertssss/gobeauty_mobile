@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**GoBeauty** is a React Native mobile application built with Expo Router, designed as a clone of IaraBeauty. The app provides beauty service booking functionality with features for both clients and administrators.
+**GoBeauty** is a React Native mobile application built with Expo Router, designed for beauty service booking. The app provides beauty service booking functionality with features for both clients and administrators.
 
 **Key Technologies:**
 - React Native 0.81.5
@@ -143,9 +143,9 @@ The app uses Expo Router with a hybrid navigation approach:
 ## Build Configuration
 
 ### Expo Configuration (`app.json`)
-- App name: "IaraBeauty Clone"
-- Bundle ID: `app.rork.iarabeauty-clone`
-- Package: `app.rork.iarabeauty_clone`
+- App name: "GoBeauty"
+- Bundle ID: `app.gobeauty`
+- Package: `app.gobeauty`
 - New Architecture: Disabled
 - Plugins: expo-router, expo-font, expo-web-browser
 

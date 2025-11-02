@@ -1,4 +1,4 @@
-package app.rork.iarabeauty_clone
+package app.gobeauty
 
 import android.app.Application
 import android.content.res.Configuration

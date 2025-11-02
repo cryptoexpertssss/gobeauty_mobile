@@ -185,7 +185,7 @@ The workflow automatically triggers when:
 
 ### 📦 Output
 
-- **File**: `IaraBeauty Clone.ipa`
+- **File**: `GoBeauty.ipa`
 - **Type**: Ad-hoc distribution (installable on registered devices)
 - **Download**: From GitHub Actions artifacts
 
@@ -282,7 +282,7 @@ After pushing code:
 
 **"No provisioning profile found"**
 - Verify `APPLE_PROVISIONING_PROFILE_BASE64` secret is set
-- Ensure the profile matches your bundle ID (`app.rork.iarabeauty-clone`)
+- Ensure the profile matches your bundle ID (`app.gobeauty`)
 - Check that the profile includes your distribution certificate
 
 **"Code signing is required"**

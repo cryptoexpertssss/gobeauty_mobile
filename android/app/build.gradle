@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'app.rork.iarabeauty_clone'
+    namespace 'app.gobeauty'
     defaultConfig {
-        applicationId 'app.rork.iarabeauty_clone'
+        applicationId 'app.gobeauty'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

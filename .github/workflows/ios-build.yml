@@ -137,10 +137,10 @@ jobs:
           # Archive the app
           xcodebuild \
             -workspace "$WORKSPACE" \
-            -scheme "IaraBeauty Clone" \
+            -scheme "GoBeauty" \
             -configuration Release \
             -sdk iphoneos \
-            -archivePath $RUNNER_TEMP/IaraBeauty.xcarchive \
+            -archivePath $RUNNER_TEMP/GoBeauty.xcarchive \
             -allowProvisioningUpdates \
             archive
 
@@ -171,7 +171,7 @@ jobs:
           # Export IPA
           xcodebuild \
             -exportArchive \
-            -archivePath $RUNNER_TEMP/IaraBeauty.xcarchive \
+            -archivePath $RUNNER_TEMP/GoBeauty.xcarchive \
             -exportOptionsPlist $RUNNER_TEMP/ExportOptions.plist \
             -exportPath $RUNNER_TEMP/export
 

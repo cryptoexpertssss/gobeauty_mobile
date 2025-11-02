@@ -1,4 +1,4 @@
-package app.rork.iarabeauty_clone
+package app.gobeauty
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

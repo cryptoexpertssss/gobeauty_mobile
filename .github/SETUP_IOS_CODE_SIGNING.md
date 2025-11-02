@@ -35,8 +35,8 @@ You need to add the following secrets to your GitHub repository:
 4. Select **App IDs** → **Continue**
 5. Select **App** → **Continue**
 6. Fill in:
-   - **Description**: `IaraBeauty Clone`
-   - **Bundle ID**: `app.rork.iarabeauty-clone` (must match `app.json`)
+   - **Description**: `GoBeauty`
+   - **Bundle ID**: `app.gobeauty` (must match `app.json`)
 7. Select capabilities your app needs (e.g., Push Notifications, In-App Purchase)
 8. Click **Continue** → **Register**
 
@@ -77,10 +77,10 @@ You need to add the following secrets to your GitHub repository:
 2. Navigate to **Certificates, Identifiers & Profiles** → **Profiles**
 3. Click **+** (plus button)
 4. Select **Ad Hoc** (for testing) or **App Store** (for production) → **Continue**
-5. Select your App ID (`app.rork.iarabeauty-clone`) → **Continue**
+5. Select your App ID (`app.gobeauty`) → **Continue**
 6. Select your Distribution certificate → **Continue**
 7. Select devices to include (for Ad Hoc only) → **Continue**
-8. Enter Profile Name: `IaraBeauty AdHoc` → **Generate**
+8. Enter Profile Name: `GoBeauty AdHoc` → **Generate**
 9. **Download** the provisioning profile (`.mobileprovision` file)
 
 ### Step 5: Convert Files to Base64
@@ -97,7 +97,7 @@ Save this value - you'll use it for `APPLE_CERTIFICATE_BASE64`.
 
 ```bash
 # Convert provisioning profile to base64
-base64 -i IaraBeauty_AdHoc.mobileprovision | pbcopy
+base64 -i GoBeauty_AdHoc.mobileprovision | pbcopy
 # The base64 string is now in your clipboard
 ```
 
