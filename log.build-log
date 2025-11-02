@@ -1,0 +1,636 @@
+Skip to content
+Navigation Menu
+cryptoexpertssss
+gobeauty_mobile
+
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+Build Android APK
+Fix: Update react-native-reanimated to v3.18.0 for RN 0.81.5 compatib… #4
+Jobs
+Run details
+Build Android APK
+failed now in 6m 24s
+Search logs
+3s
+1s
+0s
+0s
+2s
+3s
+0s
+30s
+4s
+0s
+5m 35s
+Run ./gradlew assembleRelease --no-daemon
+Downloading https://services.gradle.org/distributions/gradle-8.14.3-bin.zip
+.............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%..............100%
+Welcome to Gradle 8.14.3!
+Here are the highlights of this release:
+ - Java 24 support
+ - GraalVM Native Image toolchain selection
+ - Enhancements to test reporting
+ - Build Authoring improvements
+For more details see https://docs.gradle.org/8.14.3/release-notes.html
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Configure project :expo-gradle-plugin:expo-autolinking-plugin
+w: file:///home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/expo-modules-autolinking/android/expo-gradle-plugin/expo-autolinking-plugin/build.gradle.kts:25:3: 'kotlinOptions(KotlinJvmOptionsDeprecated /* = KotlinJvmOptions */.() -> Unit): Unit' is deprecated. Please migrate to the compilerOptions DSL. More details are here: https://kotl.in/u1r8ln
+> Configure project :expo-gradle-plugin:expo-autolinking-settings-plugin
+w: file:///home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/expo-modules-autolinking/android/expo-gradle-plugin/expo-autolinking-settings-plugin/build.gradle.kts:30:3: 'kotlinOptions(KotlinJvmOptionsDeprecated /* = KotlinJvmOptions */.() -> Unit): Unit' is deprecated. Please migrate to the compilerOptions DSL. More details are here: https://kotl.in/u1r8ln
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:pluginDescriptors
+> Task :gradle-plugin:settings-plugin:pluginDescriptors
+> Task :gradle-plugin:settings-plugin:processResources
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:processResources
+> Task :gradle-plugin:shared:processResources NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:processResources NO-SOURCE
+> Task :gradle-plugin:shared:compileKotlin
+> Task :gradle-plugin:shared:compileJava NO-SOURCE
+> Task :gradle-plugin:shared:classes UP-TO-DATE
+> Task :gradle-plugin:shared:jar
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileKotlin
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:jar
+> Task :gradle-plugin:settings-plugin:compileKotlin
+> Task :gradle-plugin:settings-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:settings-plugin:classes
+> Task :gradle-plugin:settings-plugin:jar
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileKotlin
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:classes
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:jar
+> Configure project :expo-module-gradle-plugin
+w: file:///home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/expo-modules-core/expo-module-gradle-plugin/build.gradle.kts:58:3: 'kotlinOptions(KotlinJvmOptionsDeprecated /* = KotlinJvmOptions */.() -> Unit): Unit' is deprecated. Please migrate to the compilerOptions DSL. More details are here: https://kotl.in/u1r8ln
+> Task :gradle-plugin:react-native-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:pluginDescriptors
+> Task :expo-module-gradle-plugin:processResources
+> Task :expo-gradle-plugin:expo-autolinking-plugin:pluginDescriptors
+> Task :expo-gradle-plugin:expo-autolinking-plugin:processResources
+> Task :gradle-plugin:react-native-gradle-plugin:pluginDescriptors
+> Task :gradle-plugin:react-native-gradle-plugin:processResources
+> Task :expo-gradle-plugin:expo-autolinking-plugin:compileKotlin
+> Task :expo-gradle-plugin:expo-autolinking-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:classes
+> Task :expo-gradle-plugin:expo-autolinking-plugin:jar
+> Task :gradle-plugin:react-native-gradle-plugin:compileKotlin
+> Task :gradle-plugin:react-native-gradle-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:react-native-gradle-plugin:classes
+> Task :gradle-plugin:react-native-gradle-plugin:jar
+> Task :expo-module-gradle-plugin:compileKotlin
+w: file:///home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/expo-modules-core/expo-module-gradle-plugin/src/main/kotlin/expo/modules/plugin/android/AndroidLibraryExtension.kt:9:24 'var targetSdk: Int?' is deprecated. Will be removed from library DSL in v9.0. Use testOptions.targetSdk or/and lint.targetSdk instead.
+> Task :expo-module-gradle-plugin:compileJava NO-SOURCE
+> Task :expo-module-gradle-plugin:classes
+> Task :expo-module-gradle-plugin:jar
+> Configure project :
+[ExpoRootProject] Using the following versions:
+  - buildTools:  36.0.0
+  - minSdk:      24
+  - compileSdk:  36
+  - targetSdk:   36
+  - ndk:         27.1.12297006
+  - kotlin:      2.1.20
+  - ksp:         2.1.20-2.0.1
+> Configure project :app
+Checking the license for package NDK (Side by side) 27.1.12297006 in /usr/local/lib/android/sdk/licenses
+License for package NDK (Side by side) 27.1.12297006 accepted.
+Preparing "Install NDK (Side by side) 27.1.12297006 v.27.1.12297006".
+"Install NDK (Side by side) 27.1.12297006 v.27.1.12297006" ready.
+Installing NDK (Side by side) 27.1.12297006 in /usr/local/lib/android/sdk/ndk/27.1.12297006
+"Install NDK (Side by side) 27.1.12297006 v.27.1.12297006" complete.
+"Install NDK (Side by side) 27.1.12297006 v.27.1.12297006" finished.
+> Configure project :expo
+Using expo modules
+  - expo-constants (18.0.10)
+  - expo-modules-core (3.0.22)
+  - [📦] expo-asset (12.0.9)
+  - [📦] expo-blur (15.0.7)
+  - [📦] expo-file-system (19.0.17)
+  - [📦] expo-font (14.0.9)
+  - [📦] expo-haptics (15.0.7)
+  - [📦] expo-image (3.0.10)
+  - [📦] expo-image-loader (6.0.0)
+  - [📦] expo-image-picker (17.0.8)
+  - [📦] expo-keep-awake (15.0.7)
+  - [📦] expo-linear-gradient (15.0.7)
+  - [📦] expo-linking (8.0.8)
+  - [📦] expo-location (19.0.7)
+  - [📦] expo-splash-screen (31.0.10)
+  - [📦] expo-system-ui (6.0.8)
+  - [📦] expo-web-browser (15.0.8)
+> Configure project :react-native-reanimated
+Android gradle plugin: 8.11.0
+Gradle: 8.14.3
+> Task :expo-modules-core:preBuild UP-TO-DATE
+> Task :app:generateAutolinkingNewArchitectureFiles
+> Task :app:generateAutolinkingPackageList
+> Task :app:generateCodegenSchemaFromJavaScript SKIPPED
+> Task :app:generateCodegenArtifactsFromSchema SKIPPED
+> Task :app:generateReactNativeEntryPoint
+> Task :expo-constants:createExpoConfig
+The NODE_ENV environment variable is required but was not specified. Ensure the project is bundled with Expo CLI or NODE_ENV is set. Using only .env.local and .env
+> Task :expo-constants:preBuild
+> Task :react-native-reanimated:assertMinimalReactNativeVersionTask SKIPPED
+> Task :react-native-async-storage_async-storage:generateCodegenSchemaFromJavaScript
+> Task :react-native-gesture-handler:generateCodegenSchemaFromJavaScript
+> Task :react-native-reanimated:generateCodegenSchemaFromJavaScript
+> Task :react-native-async-storage_async-storage:generateCodegenArtifactsFromSchema
+> Task :react-native-async-storage_async-storage:preBuild
+> Task :react-native-gesture-handler:generateCodegenArtifactsFromSchema
+> Task :react-native-gesture-handler:preBuild
+> Task :expo:generatePackagesList
+> Task :expo:preBuild
+> Task :react-native-reanimated:generateCodegenArtifactsFromSchema
+> Task :react-native-safe-area-context:generateCodegenSchemaFromJavaScript
+> Task :react-native-reanimated:prepareReanimatedHeadersForPrefabs
+> Task :react-native-reanimated:prepareWorkletsHeadersForPrefabs
+> Task :react-native-reanimated:preBuild
+> Task :react-native-reanimated:preReleaseBuild
+> Task :react-native-screens:generateCodegenSchemaFromJavaScript
+> Task :react-native-svg:generateCodegenSchemaFromJavaScript
+> Task :react-native-safe-area-context:generateCodegenArtifactsFromSchema
+> Task :react-native-safe-area-context:preBuild
+> Task :expo:preReleaseBuild
+> Task :expo:mergeReleaseJniLibFolders
+> Task :expo:mergeReleaseNativeLibs NO-SOURCE
+> Task :expo:copyReleaseJniLibsProjectOnly
+> Task :expo-constants:preReleaseBuild
+> Task :expo-constants:mergeReleaseJniLibFolders
+> Task :expo-constants:mergeReleaseNativeLibs NO-SOURCE
+> Task :expo-constants:copyReleaseJniLibsProjectOnly
+> Task :expo-modules-core:preReleaseBuild UP-TO-DATE
+> Task :react-native-screens:generateCodegenArtifactsFromSchema
+> Task :react-native-screens:preBuild
+> Task :react-native-async-storage_async-storage:preReleaseBuild
+> Task :react-native-async-storage_async-storage:mergeReleaseJniLibFolders
+> Task :react-native-async-storage_async-storage:mergeReleaseNativeLibs NO-SOURCE
+> Task :react-native-async-storage_async-storage:copyReleaseJniLibsProjectOnly
+> Task :react-native-gesture-handler:preReleaseBuild
+> Task :react-native-gesture-handler:mergeReleaseJniLibFolders
+> Task :react-native-safe-area-context:preReleaseBuild
+> Task :react-native-safe-area-context:mergeReleaseJniLibFolders
+> Task :react-native-safe-area-context:mergeReleaseNativeLibs NO-SOURCE
+> Task :react-native-safe-area-context:copyReleaseJniLibsProjectOnly
+> Task :react-native-screens:preReleaseBuild
+> Task :react-native-svg:generateCodegenArtifactsFromSchema
+> Task :react-native-svg:preBuild
+> Task :app:preBuild
+> Task :app:preReleaseBuild
+> Task :app:mergeReleaseJniLibFolders
+> Task :react-native-svg:preReleaseBuild
+> Task :react-native-svg:mergeReleaseJniLibFolders
+> Task :react-native-svg:mergeReleaseNativeLibs NO-SOURCE
+> Task :react-native-svg:copyReleaseJniLibsProjectOnly
+> Task :react-native-gesture-handler:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-gesture-handler:generateReleaseBuildConfig
+> Task :react-native-gesture-handler:generateReleaseResValues
+> Task :react-native-gesture-handler:generateReleaseResources
+> Task :react-native-gesture-handler:packageReleaseResources
+> Task :react-native-gesture-handler:parseReleaseLocalResources
+> Task :react-native-gesture-handler:generateReleaseRFile
+> Task :react-native-svg:generateReleaseBuildConfig
+> Task :react-native-svg:generateReleaseResValues
+> Task :react-native-svg:generateReleaseResources
+> Task :react-native-svg:packageReleaseResources
+> Task :react-native-svg:parseReleaseLocalResources
+> Task :react-native-svg:generateReleaseRFile
+> Task :react-native-svg:javaPreCompileRelease
+> Task :react-native-reanimated:configureCMakeRelWithDebInfo[arm64-v8a]
+Checking the license for package CMake 3.22.1 in /usr/local/lib/android/sdk/licenses
+License for package CMake 3.22.1 accepted.
+Preparing "Install CMake 3.22.1 v.3.22.1".
+"Install CMake 3.22.1 v.3.22.1" ready.
+Installing CMake 3.22.1 in /usr/local/lib/android/sdk/cmake/3.22.1
+"Install CMake 3.22.1 v.3.22.1" complete.
+"Install CMake 3.22.1 v.3.22.1" finished.
+Note: Some input files use or override a deprecated API.
+> Task :react-native-screens:configureCMakeRelWithDebInfo[arm64-v8a]
+> Task :react-native-svg:compileReleaseJavaWithJavac
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+> Task :react-native-svg:bundleLibCompileToJarRelease
+> Task :react-native-gesture-handler:javaPreCompileRelease
+> Task :react-native-safe-area-context:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-safe-area-context:generateReleaseBuildConfig
+> Task :react-native-safe-area-context:generateReleaseResValues
+> Task :react-native-safe-area-context:generateReleaseResources
+> Task :react-native-safe-area-context:packageReleaseResources
+> Task :react-native-safe-area-context:parseReleaseLocalResources
+> Task :react-native-safe-area-context:generateReleaseRFile
+> Task :expo-modules-core:configureCMakeRelWithDebInfo[arm64-v8a]
+> Task :react-native-reanimated:configureCMakeRelWithDebInfo[armeabi-v7a]
+> Task :react-native-reanimated:configureCMakeRelWithDebInfo[x86]
+> Task :react-native-reanimated:configureCMakeRelWithDebInfo[x86_64]
+> Task :react-native-reanimated:generateJsonModelRelease
+> Task :react-native-reanimated:prefabReleaseConfigurePackage
+> Task :react-native-screens:buildCMakeRelWithDebInfo[arm64-v8a]
+> Task :app:configureCMakeRelWithDebInfo[arm64-v8a]
+> Task :react-native-safe-area-context:compileReleaseKotlin
+w: file:///home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-safe-area-context/android/src/main/java/com/th3rdwave/safeareacontext/SafeAreaView.kt:59:23 'val uiImplementation: UIImplementation!' is deprecated. Deprecated in Java.
+> Task :app:configureCMakeRelWithDebInfo[armeabi-v7a]
+> Task :react-native-gesture-handler:configureCMakeRelWithDebInfo[arm64-v8a]
+> Task :react-native-gesture-handler:configureCMakeRelWithDebInfo[armeabi-v7a]
+> Task :app:configureCMakeRelWithDebInfo[x86]
+> Task :react-native-gesture-handler:configureCMakeRelWithDebInfo[x86]
+> Task :app:configureCMakeRelWithDebInfo[x86_64]
+> Task :react-native-gesture-handler:configureCMakeRelWithDebInfo[x86_64]
+> Task :react-native-safe-area-context:javaPreCompileRelease
+> Task :expo-modules-core:buildCMakeRelWithDebInfo[arm64-v8a]
+> Task :react-native-screens:configureCMakeRelWithDebInfo[armeabi-v7a]
+> Task :react-native-safe-area-context:compileReleaseJavaWithJavac
+> Task :react-native-safe-area-context:bundleLibRuntimeToDirRelease
+> Task :react-native-reanimated:buildCMakeRelWithDebInfo[arm64-v8a][reanimated,worklets]
+> Task :react-native-async-storage_async-storage:generateReleaseBuildConfig
+> Task :react-native-async-storage_async-storage:generateReleaseResValues
+> Task :react-native-async-storage_async-storage:generateReleaseResources
+> Task :react-native-async-storage_async-storage:packageReleaseResources
+> Task :react-native-async-storage_async-storage:parseReleaseLocalResources
+> Task :react-native-async-storage_async-storage:generateReleaseRFile
+> Task :react-native-async-storage_async-storage:javaPreCompileRelease
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/@react-native-async-storage/async-storage/android/src/javaPackage/java/com/reactnativecommunity/asyncstorage/AsyncStoragePackage.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+> Task :react-native-async-storage_async-storage:compileReleaseJavaWithJavac
+> Task :react-native-async-storage_async-storage:bundleLibRuntimeToDirRelease
+> Task :expo:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo:generateReleaseBuildConfig
+> Task :expo:generateReleaseResValues
+> Task :expo:generateReleaseResources
+> Task :expo:packageReleaseResources
+> Task :expo:parseReleaseLocalResources
+> Task :expo:generateReleaseRFile
+> Task :expo-constants:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-constants:generateReleaseBuildConfig
+> Task :expo-constants:generateReleaseResValues
+> Task :expo-constants:generateReleaseResources
+> Task :expo-constants:packageReleaseResources
+> Task :expo-constants:parseReleaseLocalResources
+> Task :expo-constants:generateReleaseRFile
+> Task :expo-constants:javaPreCompileRelease
+> Task :expo:javaPreCompileRelease
+> Task :react-native-svg:bundleLibRuntimeToDirRelease
+> Task :react-native-screens:buildCMakeRelWithDebInfo[armeabi-v7a]
+> Task :react-native-screens:configureCMakeRelWithDebInfo[x86]
+> Task :expo-modules-core:configureCMakeRelWithDebInfo[armeabi-v7a]
+> Task :react-native-reanimated:buildCMakeRelWithDebInfo[arm64-v8a][reanimated,worklets]
+C/C++: ninja: Entering directory `/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/.cxx/RelWithDebInfo/6k4b3y4b/arm64-v8a'
+C/C++: /usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android24 --sysroot=/usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dreanimated_EXPORTS -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/src/main/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactAndroid/src/main/jni/react/turbomodule -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/callinvoker -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/runtimeexecutor -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/yoga -I/home/runner/work/gobeau
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp:3:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:20:33: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    20 |   void update(const ShadowNode::Shared &shadowNode, folly::dynamic &&props);
+C/C++:       |                                 ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp:3:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:52:46: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    52 |   void markNodeAsRemovable(const ShadowNode::Shared &shadowNode);
+C/C++:       |                                              ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp:3:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:57:49: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    57 |   std::unordered_map<Tag, std::pair<ShadowNode::Shared, folly::dynamic>> map_;
+C/C++:       |                                                 ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp:3:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:58:39: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    58 |   std::unordered_map<Tag, ShadowNode::Shared> removableShadowNodes_;
+C/C++:       |                                       ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp:12:23: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    12 |     const ShadowNode::Shared &shadowNode,
+C/C++:       |                       ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp:35:59: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    35 | void PropsRegistry::markNodeAsRemovable(const ShadowNode::Shared &shadowNode) {
+C/C++:       |                                                           ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: 6 errors generated.
+C/C++: /usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android24 --sysroot=/usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dreanimated_EXPORTS -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/src/main/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactAndroid/src/main/jni/react/turbomodule -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/callinvoker -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/runtimeexecutor -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/yoga -I/home/runner/work/gobeau
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedMountHook.cpp:4:
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedMountHook.h:4:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:20:33: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    20 |   void update(const ShadowNode::Shared &shadowNode, folly::dynamic &&props);
+C/C++:       |                                 ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedMountHook.cpp:4:
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedMountHook.h:4:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:52:46: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    52 |   void markNodeAsRemovable(const ShadowNode::Shared &shadowNode);
+C/C++:       |                                              ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedMountHook.cpp:4:
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedMountHook.h:4:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:57:49: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    57 |   std::unordered_map<Tag, std::pair<ShadowNode::Shared, folly::dynamic>> map_;
+C/C++:       |                                                 ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedMountHook.cpp:4:
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedMountHook.h:4:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:58:39: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    58 |   std::unordered_map<Tag, ShadowNode::Shared> removableShadowNodes_;
+C/C++:       |                                       ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedMountHook.cpp:4:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedMountHook.h:24:34: error: non-virtual member function marked 'override' hides virtual member function
+C/C++:    24 |       double mountTime) noexcept override;
+C/C++:       |                                  ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/uimanager/UIManagerMountHook.h:27:16: note: hidden overloaded virtual function 'facebook::react::UIManagerMountHook::shadowTreeDidMount' declared here: type mismatch at 2nd parameter ('HighResTimeStamp' vs 'double')
+C/C++:    27 |   virtual void shadowTreeDidMount(
+C/C++:       |                ^
+C/C++: 5 errors generated.
+C/C++: /usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android24 --sysroot=/usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dreanimated_EXPORTS -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/src/main/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactAndroid/src/main/jni/react/turbomodule -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/callinvoker -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/runtimeexecutor -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/yoga -I/home/runner/work/gobeau
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedCommitHook.cpp:3:
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedCommitHook.h:4:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:20:33: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    20 |   void update(const ShadowNode::Shared &shadowNode, folly::dynamic &&props);
+C/C++:       |                                 ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedCommitHook.cpp:3:
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedCommitHook.h:4:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:52:46: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    52 |   void markNodeAsRemovable(const ShadowNode::Shared &shadowNode);
+C/C++:       |                                              ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedCommitHook.cpp:3:
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedCommitHook.h:4:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:57:49: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    57 |   std::unordered_map<Tag, std::pair<ShadowNode::Shared, folly::dynamic>> map_;
+C/C++:       |                                                 ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedCommitHook.cpp:3:
+C/C++: In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedCommitHook.h:4:
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:58:39: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    58 |   std::unordered_map<Tag, ShadowNode::Shared> removableShadowNodes_;
+C/C++:       |                                       ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+C/C++:    36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+C/C++:       |                  ^
+C/C++: 4 errors generated.
+C/C++: /usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android24 --sysroot=/usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dreanimated_EXPORTS -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/src/main/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactAndroid/src/main/jni/react/turbomodule -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/callinvoker -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/runtimeexecutor -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/yoga -I/home/runner/work/gobeau
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ShadowTreeCloner.cpp:45:13: error: 'Unshared' is deprecated: Use std::shared_ptr<ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    45 | ShadowNode::Unshared cloneShadowTreeWithNewPropsRecursive(
+C/C++:       |             ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:42:20: note: 'Unshared' has been explicitly marked deprecated here
+C/C++:    42 |   using Unshared [[deprecated("Use std::shared_ptr<ShadowNode> instead")]] =
+C/C++:       |                    ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ShadowTreeCloner.cpp:62:37: error: 'ListOfShared' is deprecated: Use std::vector<std::shared_ptr<const ShadowNode>> instead [-Werror,-Wdeprecated-declarations]
+C/C++:    62 |        std::make_shared<ShadowNode::ListOfShared>(children),
+C/C++:       |                                     ^
+C/C++: /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:45:24: note: 'ListOfShared' has been explicitly marked deprecated here
+C/C++:    45 |   using ListOfShared [[deprecated(
+C/C++:       |                        ^
+C/C++: 2 errors generated.
+> Task :react-native-reanimated:buildCMakeRelWithDebInfo[arm64-v8a][reanimated,worklets] FAILED
+> Task :app:checkReleaseDuplicateClasses
+> Task :react-native-screens:buildCMakeRelWithDebInfo[x86]
+FAILURE: Build failed with an exception.
+* What went wrong:
+Execution failed for task ':react-native-reanimated:buildCMakeRelWithDebInfo[arm64-v8a][reanimated,worklets]'.
+> com.android.ide.common.process.ProcessException: ninja: Entering directory `/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/.cxx/RelWithDebInfo/6k4b3y4b/arm64-v8a'
+  [0/2] Re-checking globbed directories...
+  [1/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/Registries/WorkletRuntimeRegistry.cpp.o
+  [2/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/Tools/AsyncQueue.cpp.o
+> Task :expo-modules-core:buildCMakeRelWithDebInfo[armeabi-v7a]
+  [3/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/NativeModules/WorkletsModuleProxySpec.cpp.o
+  [4/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/Registries/EventHandlerRegistry.cpp.o
+  [5/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/Tools/JSLogger.cpp.o
+  [6/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/SharedItems/Shareables.cpp.o
+[Incubating] Problems report is available at: file:///home/runner/work/gobeauty_mobile/gobeauty_mobile/android/build/reports/problems/problems-report.html
+  [7/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/Tools/JSISerializer.cpp.o
+  [8/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/Tools/JSScheduler.cpp.o
+  [9/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/Tools/ReanimatedJSIUtils.cpp.o
+  [10/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/Tools/ReanimatedVersion.cpp.o
+  [11/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/Tools/UIScheduler.cpp.o
+  [12/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/NativeModules/WorkletsModuleProxy.cpp.o
+  [13/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/Tools/WorkletEventHandler.cpp.o
+  [14/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/WorkletRuntime/RNRuntimeWorkletDecorator.cpp.o
+  [15/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/WorkletRuntime/ReanimatedRuntime.cpp.o
+  [16/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/WorkletRuntime/ReanimatedHermesRuntime.cpp.o
+  [17/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/android/PlatformLogger.cpp.o
+  [18/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/WorkletRuntime/WorkletRuntime.cpp.o
+  [19/41] Building CXX object src/main/cpp/reanimated/CMakeFiles/reanimated.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/AnimatedSensor/AnimatedSensorModule.cpp.o
+  [20/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/android/AndroidUIScheduler.cpp.o
+  [21/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/worklets/WorkletRuntime/WorkletRuntimeDecorator.cpp.o
+  [22/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/android/WorkletsOnLoad.cpp.o
+  [23/41] Building CXX object src/main/cpp/reanimated/CMakeFiles/reanimated.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp.o
+  FAILED: src/main/cpp/reanimated/CMakeFiles/reanimated.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp.o 
+  /usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android24 --sysroot=/usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dreanimated_EXPORTS -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/src/main/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactAndroid/src/main/jni/react/turbomodule -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/callinvoker -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/runtimeexecutor -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/yoga -I/home/runner/work/gobeauty_mo
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp:3:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:20:33: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     20 |   void update(const ShadowNode::Shared &shadowNode, folly::dynamic &&props);
+        |                                 ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp:3:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:52:46: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     52 |   void markNodeAsRemovable(const ShadowNode::Shared &shadowNode);
+        |                                              ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp:3:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:57:49: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     57 |   std::unordered_map<Tag, std::pair<ShadowNode::Shared, folly::dynamic>> map_;
+        |                                                 ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp:3:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:58:39: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     58 |   std::unordered_map<Tag, ShadowNode::Shared> removableShadowNodes_;
+        |                                       ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp:12:23: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     12 |     const ShadowNode::Shared &shadowNode,
+        |                       ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/PropsRegistry.cpp:35:59: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     35 | void PropsRegistry::markNodeAsRemovable(const ShadowNode::Shared &shadowNode) {
+        |                                                           ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  6 errors generated.
+  [24/41] Building CXX object src/main/cpp/worklets/CMakeFiles/worklets.dir/android/WorkletsModule.cpp.o
+  [25/41] Building CXX object src/main/cpp/reanimated/CMakeFiles/reanimated.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedMountHook.cpp.o
+  FAILED: src/main/cpp/reanimated/CMakeFiles/reanimated.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedMountHook.cpp.o 
+  /usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android24 --sysroot=/usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dreanimated_EXPORTS -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/src/main/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactAndroid/src/main/jni/react/turbomodule -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/callinvoker -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/runtimeexecutor -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/yoga -I/home/runner/work/gobeauty_mo
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedMountHook.cpp:4:
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedMountHook.h:4:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:20:33: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     20 |   void update(const ShadowNode::Shared &shadowNode, folly::dynamic &&props);
+        |                                 ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedMountHook.cpp:4:
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedMountHook.h:4:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:52:46: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     52 |   void markNodeAsRemovable(const ShadowNode::Shared &shadowNode);
+        |                                              ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedMountHook.cpp:4:
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedMountHook.h:4:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:57:49: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     57 |   std::unordered_map<Tag, std::pair<ShadowNode::Shared, folly::dynamic>> map_;
+        |                                                 ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedMountHook.cpp:4:
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedMountHook.h:4:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:58:39: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     58 |   std::unordered_map<Tag, ShadowNode::Shared> removableShadowNodes_;
+        |                                       ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedMountHook.cpp:4:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedMountHook.h:24:34: error: non-virtual member function marked 'override' hides virtual member function
+     24 |       double mountTime) noexcept override;
+        |                                  ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/uimanager/UIManagerMountHook.h:27:16: note: hidden overloaded virtual function 'facebook::react::UIManagerMountHook::shadowTreeDidMount' declared here: type mismatch at 2nd parameter ('HighResTimeStamp' vs 'double')
+     27 |   virtual void shadowTreeDidMount(
+        |                ^
+  5 errors generated.
+  [26/41] Building CXX object src/main/cpp/reanimated/CMakeFiles/reanimated.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedCommitHook.cpp.o
+  FAILED: src/main/cpp/reanimated/CMakeFiles/reanimated.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedCommitHook.cpp.o 
+  /usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android24 --sysroot=/usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dreanimated_EXPORTS -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/src/main/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactAndroid/src/main/jni/react/turbomodule -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/callinvoker -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/runtimeexecutor -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/yoga -I/home/runner/work/gobeauty_mo
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedCommitHook.cpp:3:
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedCommitHook.h:4:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:20:33: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     20 |   void update(const ShadowNode::Shared &shadowNode, folly::dynamic &&props);
+        |                                 ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedCommitHook.cpp:3:
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedCommitHook.h:4:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:52:46: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     52 |   void markNodeAsRemovable(const ShadowNode::Shared &shadowNode);
+        |                                              ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedCommitHook.cpp:3:
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedCommitHook.h:4:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:57:49: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     57 |   std::unordered_map<Tag, std::pair<ShadowNode::Shared, folly::dynamic>> map_;
+        |                                                 ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ReanimatedCommitHook.cpp:3:
+  In file included from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/ReanimatedCommitHook.h:4:
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp/reanimated/Fabric/PropsRegistry.h:58:39: error: 'Shared' is deprecated: Use std::shared_ptr<const ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     58 |   std::unordered_map<Tag, ShadowNode::Shared> removableShadowNodes_;
+        |                                       ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:36:18: note: 'Shared' has been explicitly marked deprecated here
+     36 |   using Shared [[deprecated("Use std::shared_ptr<const ShadowNode> instead")]] =
+        |                  ^
+  4 errors generated.
+  [27/41] Building CXX object src/main/cpp/reanimated/CMakeFiles/reanimated.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ShadowTreeCloner.cpp.o
+  FAILED: src/main/cpp/reanimated/CMakeFiles/reanimated.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ShadowTreeCloner.cpp.o 
+  /usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=aarch64-none-linux-android24 --sysroot=/usr/local/lib/android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dreanimated_EXPORTS -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/../Common/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/src/main/cpp -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactAndroid/src/main/jni/react/turbomodule -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/callinvoker -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/runtimeexecutor -I/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/yoga -I/home/runner/work/gobeauty_mo
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ShadowTreeCloner.cpp:45:13: error: 'Unshared' is deprecated: Use std::shared_ptr<ShadowNode> instead [-Werror,-Wdeprecated-declarations]
+     45 | ShadowNode::Unshared cloneShadowTreeWithNewPropsRecursive(
+        |             ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:42:20: note: 'Unshared' has been explicitly marked deprecated here
+     42 |   using Unshared [[deprecated("Use std::shared_ptr<ShadowNode> instead")]] =
+        |                    ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/Fabric/ShadowTreeCloner.cpp:62:37: error: 'ListOfShared' is deprecated: Use std::vector<std::shared_ptr<const ShadowNode>> instead [-Werror,-Wdeprecated-declarations]
+     62 |        std::make_shared<ShadowNode::ListOfShared>(children),
+        |                                     ^
+  /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native/ReactCommon/react/renderer/core/ShadowNode.h:45:24: note: 'ListOfShared' has been explicitly marked deprecated here
+     45 |   using ListOfShared [[deprecated(
+        |                        ^
+  2 errors generated.
+  [28/41] Building CXX object src/main/cpp/reanimated/CMakeFiles/reanimated.dir/home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/Common/cpp/reanimated/LayoutAnimations/LayoutAnimationsManager.cpp.o
+  ninja: build stopped: subcommand failed.
+  
+  C++ build system [build] failed while executing:
+      /usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja \
+        -C \
+        /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android/.cxx/RelWithDebInfo/6k4b3y4b/arm64-v8a \
+        reanimated \
+        worklets
+    from /home/runner/work/gobeauty_mobile/gobeauty_mobile/node_modules/react-native-reanimated/android
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+BUILD FAILED in 5m 33s
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+130 actionable tasks: 130 executed
+Error: Process completed with exit code 1.
+0s
+0s
+0s
+1s
+Post job cleanup.
+0s
+0s
+Post job cleanup.
+/usr/bin/git version
+git version 2.51.2
+Temporarily overriding HOME='/home/runner/work/_temp/7e1907ee-9452-410e-b541-5c3e193834d3' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+/usr/bin/git config --global --add safe.directory /home/runner/work/gobeauty_mobile/gobeauty_mobile
+/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+http.https://github.com/.extraheader
+/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+0s
