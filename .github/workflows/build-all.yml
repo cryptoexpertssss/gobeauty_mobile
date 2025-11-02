@@ -73,19 +73,13 @@ jobs:
 
           echo "📱 Building GoBeauty v${VERSION_NAME} for ${{ matrix.platform }}"
 
-      - name: 🚀 Setup Expo
-        uses: expo/expo-github-action@v8
-        with:
-          expo-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
-
       # ============================================
       # ANDROID BUILD STEPS
       # ============================================
 
-      - name: 🔨 Prebuild Android native code
+      - name: 🔑 Make gradlew executable (Android only)
         if: matrix.platform == 'android'
-        run: npx expo prebuild --platform android --clean
+        run: chmod +x android/gradlew
 
       - name: 🏗️ Build Android APK
         if: matrix.platform == 'android'
@@ -103,10 +97,6 @@ jobs:
       # ============================================
       # iOS BUILD STEPS
       # ============================================
-
-      - name: 🔨 Prebuild iOS native code
-        if: matrix.platform == 'ios'
-        run: npx expo prebuild --platform ios --clean
 
       - name: 💾 Cache CocoaPods
         if: matrix.platform == 'ios'
