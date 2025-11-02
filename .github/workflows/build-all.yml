@@ -1,0 +1,277 @@
+name: Build All Platforms
+
+# This workflow builds both Android and iOS apps in parallel
+# Note: macOS runners are more expensive than Linux runners
+# Consider using individual workflows for single-platform builds
+
+on:
+  workflow_dispatch:
+    inputs:
+      platforms:
+        description: 'Platforms to build (comma-separated: android,ios or "all")'
+        required: false
+        default: 'all'
+  push:
+    branches:
+      - release/*
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    name: Build ${{ matrix.platform }}
+    runs-on: ${{ matrix.platform == 'ios' && 'macos-latest' || 'ubuntu-latest' }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [android, ios]
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🏗️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: ☕ Setup Java 17 (Android only)
+        if: matrix.platform == 'android'
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🔧 Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: 💾 Cache Bun dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: 📥 Install dependencies
+        run: bun install
+
+      - name: 🔢 Set Version Number
+        id: version
+        run: |
+          # Get version from app.json
+          VERSION=$(node -p "require('./app.json').expo.version")
+          BUILD_NUMBER=${{ github.run_number }}
+          VERSION_NAME="${VERSION}.${BUILD_NUMBER}"
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+
+          echo "📱 Building GoBeauty v${VERSION_NAME} for ${{ matrix.platform }}"
+
+      - name: 🚀 Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      # ============================================
+      # ANDROID BUILD STEPS
+      # ============================================
+
+      - name: 🔨 Prebuild Android native code
+        if: matrix.platform == 'android'
+        run: npx expo prebuild --platform android --clean
+
+      - name: 🏗️ Build Android APK
+        if: matrix.platform == 'android'
+        working-directory: android
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: 📦 Upload Android APK artifact
+        if: matrix.platform == 'android'
+        uses: actions/upload-artifact@v4
+        with:
+          name: GoBeauty-v${{ steps.version.outputs.version_name }}-android
+          path: android/app/build/outputs/apk/release/app-release.apk
+          retention-days: 30
+
+      # ============================================
+      # iOS BUILD STEPS
+      # ============================================
+
+      - name: 🔨 Prebuild iOS native code
+        if: matrix.platform == 'ios'
+        run: npx expo prebuild --platform ios --clean
+
+      - name: 💾 Cache CocoaPods
+        if: matrix.platform == 'ios'
+        uses: actions/cache@v4
+        with:
+          path: ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: 📦 Install CocoaPods dependencies
+        if: matrix.platform == 'ios'
+        working-directory: ios
+        run: |
+          if [ -f "Podfile" ]; then
+            pod install
+          else
+            echo "No Podfile found, skipping pod install"
+          fi
+
+      - name: 🔐 Import Code Signing Certificate
+        if: matrix.platform == 'ios'
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.APPLE_CERTIFICATE_BASE64 }}
+          CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          echo -n "$CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          security import $CERTIFICATE_PATH -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          rm $CERTIFICATE_PATH
+
+      - name: 📱 Install Provisioning Profile
+        if: matrix.platform == 'ios'
+        env:
+          PROVISIONING_PROFILE_BASE64: ${{ secrets.APPLE_PROVISIONING_PROFILE_BASE64 }}
+        run: |
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+
+          echo -n "$PROVISIONING_PROFILE_BASE64" | base64 --decode -o $PP_PATH
+
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
+
+          rm $PP_PATH
+
+      - name: 🏗️ Build and Archive iOS App
+        if: matrix.platform == 'ios'
+        working-directory: ios
+        run: |
+          WORKSPACE=$(find . -name "*.xcworkspace" -maxdepth 1 | head -n 1)
+          echo "Using workspace: $WORKSPACE"
+
+          xcodebuild \
+            -workspace "$WORKSPACE" \
+            -scheme "IaraBeauty Clone" \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath $RUNNER_TEMP/IaraBeauty.xcarchive \
+            -allowProvisioningUpdates \
+            archive
+
+      - name: 📦 Export IPA
+        if: matrix.platform == 'ios'
+        run: |
+          cat > $RUNNER_TEMP/ExportOptions.plist <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>ad-hoc</string>
+            <key>teamID</key>
+            <string>${{ secrets.APPLE_TEAM_ID }}</string>
+            <key>uploadBitcode</key>
+            <false/>
+            <key>compileBitcode</key>
+            <false/>
+            <key>uploadSymbols</key>
+            <true/>
+            <key>signingStyle</key>
+            <string>manual</string>
+          </dict>
+          </plist>
+          EOF
+
+          xcodebuild \
+            -exportArchive \
+            -archivePath $RUNNER_TEMP/IaraBeauty.xcarchive \
+            -exportOptionsPlist $RUNNER_TEMP/ExportOptions.plist \
+            -exportPath $RUNNER_TEMP/export
+
+      - name: 📱 Locate IPA file
+        if: matrix.platform == 'ios'
+        id: locate_ipa
+        run: |
+          IPA_PATH=$(find $RUNNER_TEMP/export -name "*.ipa" | head -n 1)
+          echo "Found IPA at: $IPA_PATH"
+          echo "ipa_path=$IPA_PATH" >> $GITHUB_OUTPUT
+
+      - name: 📦 Upload IPA artifact
+        if: matrix.platform == 'ios'
+        uses: actions/upload-artifact@v4
+        with:
+          name: GoBeauty-v${{ steps.version.outputs.version_name }}-ios
+          path: ${{ steps.locate_ipa.outputs.ipa_path }}
+          retention-days: 30
+
+      - name: 🧹 Cleanup Keychain
+        if: matrix.platform == 'ios' && always()
+        run: |
+          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db || true
+
+      # ============================================
+      # BUILD SUMMARY
+      # ============================================
+
+      - name: 📝 Build Summary
+        run: |
+          if [ "${{ matrix.platform }}" == "android" ]; then
+            echo "### ✅ Android Build Successful! 🎉" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "📱 **App:** GoBeauty v${{ steps.version.outputs.version_name }}" >> $GITHUB_STEP_SUMMARY
+            echo "🤖 **Platform:** Android" >> $GITHUB_STEP_SUMMARY
+            echo "🔢 **Version:** ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+            echo "🏗️ **Build Number:** ${{ steps.version.outputs.build_number }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "📥 **Download:** GoBeauty-v${{ steps.version.outputs.version_name }}-android.zip" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ✅ iOS Build Successful! 🎉" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "📱 **App:** GoBeauty v${{ steps.version.outputs.version_name }}" >> $GITHUB_STEP_SUMMARY
+            echo "🍎 **Platform:** iOS (Device)" >> $GITHUB_STEP_SUMMARY
+            echo "🔢 **Version:** ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+            echo "🏗️ **Build Number:** ${{ steps.version.outputs.build_number }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "📥 **Download:** GoBeauty-v${{ steps.version.outputs.version_name }}-ios.zip" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  summary:
+    name: 📊 Multi-Platform Build Summary
+    needs: build
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: 📊 Overall Build Status
+        run: |
+          echo "## 🚀 GoBeauty Multi-Platform Build Complete!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Build Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Platform | Status | Artifact |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|--------|----------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🤖 Android | ${{ needs.build.result }} | GoBeauty-v*.android.zip |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🍎 iOS | ${{ needs.build.result }} | GoBeauty-v*.ios.zip |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📥 **Download both artifacts from the 'Artifacts' section above.**" >> $GITHUB_STEP_SUMMARY
+

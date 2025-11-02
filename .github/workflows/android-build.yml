@@ -1,0 +1,85 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🏗️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: ☕ Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🔧 Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: 📥 Install dependencies
+        run: bun install
+
+      - name: � Set Version Number
+        id: version
+        run: |
+          # Get version from app.json
+          VERSION=$(node -p "require('./app.json').expo.version")
+          BUILD_NUMBER=${{ github.run_number }}
+          VERSION_NAME="${VERSION}.${BUILD_NUMBER}"
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+
+          echo "📱 Building GoBeauty v${VERSION_NAME}"
+
+      - name: �🚀 Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 🔨 Prebuild Android native code
+        run: npx expo prebuild --platform android --clean
+
+      - name: 🏗️ Build Android APK
+        working-directory: android
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: 📦 Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: GoBeauty-v${{ steps.version.outputs.version_name }}-android
+          path: android/app/build/outputs/apk/release/app-release.apk
+
+      - name: 📝 Build Summary
+        run: |
+          echo "### ✅ Android Build Successful! 🎉" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📱 **App:** GoBeauty v${{ steps.version.outputs.version_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "🤖 **Platform:** Android" >> $GITHUB_STEP_SUMMARY
+          echo "� **Version:** ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "🏗️ **Build Number:** ${{ steps.version.outputs.build_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📦 **APK Location:** \`android/app/build/outputs/apk/release/app-release.apk\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "� **Download:** Go to the 'Artifacts' section above to download **GoBeauty-v${{ steps.version.outputs.version_name }}-android.zip**" >> $GITHUB_STEP_SUMMARY
+

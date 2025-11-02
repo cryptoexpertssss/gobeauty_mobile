@@ -1,0 +1,223 @@
+name: Build iOS IPA
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build iOS IPA
+    runs-on: macos-latest
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🏗️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 🔧 Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: 💾 Cache Bun dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: 📥 Install dependencies
+        run: bun install
+
+      - name: 🔢 Set Version Number
+        id: version
+        run: |
+          # Get version from app.json
+          VERSION=$(node -p "require('./app.json').expo.version")
+          BUILD_NUMBER=${{ github.run_number }}
+          VERSION_NAME="${VERSION}.${BUILD_NUMBER}"
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+
+          echo "📱 Building GoBeauty v${VERSION_NAME}"
+
+      - name: 🚀 Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 🔨 Prebuild iOS native code
+        run: npx expo prebuild --platform ios --clean
+
+      - name: 💾 Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: 📦 Install CocoaPods dependencies
+        working-directory: ios
+        run: |
+          if [ -f "Podfile" ]; then
+            pod install
+          else
+            echo "No Podfile found, skipping pod install"
+          fi
+
+      - name: 🔐 Import Code Signing Certificate
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.APPLE_CERTIFICATE_BASE64 }}
+          CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          # Create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # Import certificate from secrets
+          echo -n "$CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+
+          # Create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # Import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          # Clean up certificate file
+          rm $CERTIFICATE_PATH
+
+      - name: 📱 Install Provisioning Profile
+        env:
+          PROVISIONING_PROFILE_BASE64: ${{ secrets.APPLE_PROVISIONING_PROFILE_BASE64 }}
+        run: |
+          # Create provisioning profile path
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+
+          # Import provisioning profile from secrets
+          echo -n "$PROVISIONING_PROFILE_BASE64" | base64 --decode -o $PP_PATH
+
+          # Copy to the standard location
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
+
+          # Clean up
+          rm $PP_PATH
+
+      - name: 🔍 List available schemes
+        working-directory: ios
+        run: |
+          echo "Available schemes:"
+          xcodebuild -list -workspace *.xcworkspace || true
+
+      - name: 🏗️ Build and Archive iOS App
+        working-directory: ios
+        run: |
+          # Find the workspace file
+          WORKSPACE=$(find . -name "*.xcworkspace" -maxdepth 1 | head -n 1)
+          echo "Using workspace: $WORKSPACE"
+
+          # Archive the app
+          xcodebuild \
+            -workspace "$WORKSPACE" \
+            -scheme "IaraBeauty Clone" \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath $RUNNER_TEMP/IaraBeauty.xcarchive \
+            -allowProvisioningUpdates \
+            archive
+
+      - name: 📦 Export IPA
+        run: |
+          # Create export options plist
+          cat > $RUNNER_TEMP/ExportOptions.plist <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>ad-hoc</string>
+            <key>teamID</key>
+            <string>${{ secrets.APPLE_TEAM_ID }}</string>
+            <key>uploadBitcode</key>
+            <false/>
+            <key>compileBitcode</key>
+            <false/>
+            <key>uploadSymbols</key>
+            <true/>
+            <key>signingStyle</key>
+            <string>manual</string>
+          </dict>
+          </plist>
+          EOF
+
+          # Export IPA
+          xcodebuild \
+            -exportArchive \
+            -archivePath $RUNNER_TEMP/IaraBeauty.xcarchive \
+            -exportOptionsPlist $RUNNER_TEMP/ExportOptions.plist \
+            -exportPath $RUNNER_TEMP/export
+
+      - name: 📱 Locate IPA file
+        id: locate_ipa
+        run: |
+          IPA_PATH=$(find $RUNNER_TEMP/export -name "*.ipa" | head -n 1)
+          echo "Found IPA at: $IPA_PATH"
+          echo "ipa_path=$IPA_PATH" >> $GITHUB_OUTPUT
+
+          # Get IPA size
+          IPA_SIZE=$(du -sh "$IPA_PATH" | cut -f1)
+          echo "IPA size: $IPA_SIZE"
+          echo "ipa_size=$IPA_SIZE" >> $GITHUB_OUTPUT
+
+      - name: 📦 Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: GoBeauty-v${{ steps.version.outputs.version_name }}-ios
+          path: ${{ steps.locate_ipa.outputs.ipa_path }}
+          retention-days: 30
+
+      - name: 🧹 Cleanup Keychain
+        if: always()
+        run: |
+          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db || true
+
+      - name: 📝 Build Summary
+        run: |
+          echo "### ✅ iOS Build Successful! 🎉" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📱 **App:** GoBeauty v${{ steps.version.outputs.version_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "🍎 **Platform:** iOS (Device)" >> $GITHUB_STEP_SUMMARY
+          echo "🔢 **Version:** ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "🏗️ **Build Number:** ${{ steps.version.outputs.build_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "📦 **IPA Size:** ${{ steps.locate_ipa.outputs.ipa_size }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📥 **Download:** Go to the 'Artifacts' section above to download **GoBeauty-v${{ steps.version.outputs.version_name }}-ios.zip**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📱 Installation Instructions" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "1. Download and extract the IPA file from artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "2. Install using one of these methods:" >> $GITHUB_STEP_SUMMARY
+          echo "   - **Xcode:** Window → Devices and Simulators → Drag IPA to device" >> $GITHUB_STEP_SUMMARY
+          echo "   - **Apple Configurator:** Connect device → Add → Apps → Select IPA" >> $GITHUB_STEP_SUMMARY
+          echo "   - **Diawi:** Upload IPA to diawi.com and share link" >> $GITHUB_STEP_SUMMARY
+          echo "3. Trust the developer certificate on your device:" >> $GITHUB_STEP_SUMMARY
+          echo "   - Settings → General → VPN & Device Management → Trust certificate" >> $GITHUB_STEP_SUMMARY
+
